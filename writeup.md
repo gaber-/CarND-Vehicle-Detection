@@ -20,23 +20,39 @@ The goals / steps of this project are the following:
 [image3]: ./saved/vehicle_hog.png
 [image4]: ./saved/non_vehicle_hog.png
 [image5]: ./saved/finished.png
-[image6]: ./examples/labels_map.png
-[image7]: ./examples/output_bboxes.png
-[video1]: ./project_video.mp4
+[image6]: ./saved/heat1.png
+[image7]: ./saved/label1.png
+[video8]: ./saved/boxes1.mp4
+[image9]: ./saved/heat2.png
+[image10]: ./saved/label2.png
+[video11]: ./saved/boxes2.mp4
+[image12]: ./saved/heat3.png
+[image13]: ./saved/label3.png
+[video14]: ./saved/boxes3.mp4
+[image15]: ./saved/heat4.png
+[image16]: ./saved/label4.png
+[video17]: ./saved/boxes4.mp4
+[image18]: ./saved/heat5.png
+[image19]: ./saved/label5.png
+[video20]: ./saved/boxes5.mp4
+[image21]: ./saved/heat6.png
+[image22]: ./saved/label6.png
+[image23]: ./saved/label6.png
+[video1]: ./saved/boxes6.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-###Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
+### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README
+### Writeup / README
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  [Here](https://github.com/udacity/CarND-Vehicle-Detection/blob/master/writeup_template.md) is a template writeup for this project you can use as a guide and a starting point.  
 
 You're reading it!
 
-###Histogram of Oriented Gradients (HOG)
+### Histogram of Oriented Gradients (HOG)
 
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 The code for this step is contained in the first code cell of the IPython notebook ().  
 
@@ -52,25 +68,25 @@ Here is an ecample
 ![alt text][image3]
 ![alt text][image4]
 
-####2. Explain how you settled on your final choice of HOG parameters.
+#### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various combinations of parameters and chose 16 pixels per cell, 9 orientations and 4 cells per block as it gave a good performance with few parameters
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using the selected HOG parameters (cells 2-13), I tried various histogram features (on HSV and RGB) and spatial binning on an 8*8 image, but chose to only use the saturation, Cb component of YCrCb and spatial binning on a 8*8 downscaled version of the image.
 
 I noticed that applying a histogram equalization to the image passed to the HOG function seems to improve the result.
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 I applied different sizes of sliding window at different heights (15-17), to account for perspective:
 
 I chose a "generous" 0.8 overlap for the 124*124 window and 0.6 or 0.5.
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector.  Example:
 
@@ -79,11 +95,11 @@ Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spat
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 Here's a [link to my video result](./out/project_video.mp4)
 
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video (cells 18-26). From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
@@ -120,9 +136,9 @@ Here's an example result showing the heatmap from a series of images, the result
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
 
