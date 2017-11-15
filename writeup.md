@@ -1,8 +1,3 @@
-##Writeup Template
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
 **Vehicle Detection Project**
 
 The goals / steps of this project are the following:
@@ -25,20 +20,20 @@ The goals / steps of this project are the following:
 [video8]: ./saved/boxes1.mp4
 [image9]: ./saved/heat2.png
 [image10]: ./saved/label2.png
-[video11]: ./saved/boxes2.mp4
+[video11]: ./saved/boxes2.png
 [image12]: ./saved/heat3.png
 [image13]: ./saved/label3.png
-[video14]: ./saved/boxes3.mp4
+[video14]: ./saved/boxes3.png
 [image15]: ./saved/heat4.png
 [image16]: ./saved/label4.png
-[video17]: ./saved/boxes4.mp4
+[video17]: ./saved/boxes4.png
 [image18]: ./saved/heat5.png
 [image19]: ./saved/label5.png
-[video20]: ./saved/boxes5.mp4
+[video20]: ./saved/boxes5.png
 [image21]: ./saved/heat6.png
 [image22]: ./saved/label6.png
-[image23]: ./saved/label6.png
-[video1]: ./saved/boxes6.mp4
+[image23]: ./saved/boxes6.png
+[video1]: ./saved/boxes6.png
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
