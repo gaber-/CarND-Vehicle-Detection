@@ -48,7 +48,7 @@ You're reading it!
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook ().  
+The code for this step is contained in the first code cell of the IPython notebook.  
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
@@ -138,3 +138,6 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 
 The first issue I faced was the huge number of parameters and features that could possibly be used. I tried naively applying HOG, color histogram, spatial binning and HSV together, and then chose the most significative features, and tuned the techniques individually.
 
+Then I noticed the car identification was kind of rigid: if the car didn't fall precisely inside a window it would not get identified. I solved this by increasing the overlapping of windows.
+
+Lastly the heatmap generated had some noise, so I added a high threshold.
