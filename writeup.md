@@ -104,26 +104,26 @@ Here's an example result showing the heatmap from a series of images, the result
 ### Here are six frames and their corresponding heatmaps:
 
 ![alt text][image6]
-![alt text][image7]
-![alt text][image8]
 ![alt text][image9]
-![alt text][image10]
-![alt text][image11]
+![alt text][image12]
+![alt text][image15]
+![alt text][image18]
+![alt text][image21]
 
 ### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image12]
+![alt text][image7]
+![alt text][image10]
 ![alt text][image13]
-![alt text][image14]
-![alt text][image15]
 ![alt text][image16]
-![alt text][image17]
+![alt text][image19]
+![alt text][image22]
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image18]
-![alt text][image19]
+![alt text][image8]
+![alt text][image11]
+![alt text][image14]
+![alt text][image17]
 ![alt text][image20]
-![alt text][image21]
-![alt text][image22]
 ![alt text][image23]
 
 
