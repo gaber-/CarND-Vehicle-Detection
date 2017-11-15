@@ -17,23 +17,22 @@ The goals / steps of this project are the following:
 [image5]: ./saved/finished.png
 [image6]: ./saved/heat1.png
 [image7]: ./saved/label1.png
-[video8]: ./saved/boxes1.mp4
+[image8]: ./saved/boxes1.png
 [image9]: ./saved/heat2.png
 [image10]: ./saved/label2.png
-[video11]: ./saved/boxes2.png
+[image11]: ./saved/boxes2.png
 [image12]: ./saved/heat3.png
 [image13]: ./saved/label3.png
-[video14]: ./saved/boxes3.png
+[image14]: ./saved/boxes3.png
 [image15]: ./saved/heat4.png
 [image16]: ./saved/label4.png
-[video17]: ./saved/boxes4.png
+[image17]: ./saved/boxes4.png
 [image18]: ./saved/heat5.png
 [image19]: ./saved/label5.png
-[video20]: ./saved/boxes5.png
+[image20]: ./saved/boxes5.png
 [image21]: ./saved/heat6.png
 [image22]: ./saved/label6.png
 [image23]: ./saved/boxes6.png
-[video1]: ./saved/boxes6.png
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
