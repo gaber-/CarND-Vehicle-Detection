@@ -64,13 +64,13 @@ Here is an ecample
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and chose 16 pixels per cell, 9 orientations and 4 cells per block as it gave a good performance with few parameters
+I tried various combinations of parameters and chose 16 pixels per cell, 11 orientations and 2 cells per block as it gave a good performance with few parameters
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using the selected HOG parameters (cells 2-13), I tried various histogram features (on HSV and RGB) and spatial binning on an 8*8 image, but chose to only use the saturation, Cb component of YCrCb and spatial binning on a 8*8 downscaled version of the image.
+I trained a linear SVM using the selected HOG parameters (cells 2-13), I used the histogram features of various color spaces(HSV, YUV, RGB, YCrCb) and spatial binning on an 8*8 image, which seem to improve the performance a bit without adding too many parameters.
 
-I noticed that applying a histogram equalization to the image passed to the HOG function seems to improve the result.
+I noticed that applying a histogram equalization to the image passed to the HOG function seems to improve the resut in some cases.
 
 ### Sliding Window Search
 
@@ -78,11 +78,11 @@ I noticed that applying a histogram equalization to the image passed to the HOG 
 
 I applied different sizes of sliding window at different heights (15-17), to account for perspective:
 
-I chose a "generous" 0.8 overlap for the 124*124 window and 0.6 or 0.5.
+I chose a "generous" 0.8*0.6 overlap for the 96*96 windows and 0.5 for the 124*124 and 64*64 windows.
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector.  Example:
+Ultimately I searched on two scales using YUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector.  Example:
 
 ![alt text][image5]
 ---
@@ -97,7 +97,7 @@ Here's a [link to my video result](./out/project_video.mp4)
 
 I recorded the positions of positive detections in each frame of the video (cells 18-26). From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
-I carry over the old heatmap to te new frame of the video, and divide it to make the reading more stable.
+I use a dqueue to save the last N heatmaps and average them before thresholding them, this ensure that the detection is more consistent and that stray false positives get filtered away.
 
 Here's an example result showing the heatmap from a series of images, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
