@@ -68,7 +68,7 @@ I tried various combinations of parameters and chose 16 pixels per cell, 11 orie
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using the selected HOG parameters (cells 2-13), I used the histogram features of various color spaces(HSV, YUV, RGB, YCrCb) and spatial binning on an 8*8 image, which seem to improve the performance a bit without adding too many parameters.
+I trained a neural classifier using the selected HOG parameters (cells 2-13), I used the histogram features of various color spaces(HSV, YUV, RGB, YCrCb) and spatial binning on an 8*8 image, which seem to improve the performance a bit without adding too many parameters.
 
 I noticed that applying a histogram equalization to the image passed to the HOG function seems to improve the resut in some cases.
 
@@ -78,7 +78,7 @@ I noticed that applying a histogram equalization to the image passed to the HOG 
 
 I applied different sizes of sliding window at different heights (15-17), to account for perspective:
 
-I chose a "generous" 0.8*0.6 overlap for the 96*96 windows and 0.5 for the 124*124 and 64*64 windows.
+I chose an overlap of 0.8*0.6 for the 96*96 windows, 0.8*0.8 for the 256*256 windows and 0.5*0.5 for the 124*124 and 64*64 windows.
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -140,4 +140,8 @@ The first issue I faced was the huge number of parameters and features that coul
 
 Then I noticed the car identification was kind of rigid: if the car didn't fall precisely inside a window it would not get identified. I solved this by increasing the overlapping of windows.
 
-Lastly the heatmap generated had some noise, so I added a high threshold.
+I introduced a minimum confidence threshold to weed out the most obvious false positives but the heatmap generated still had some noise, so I added used a threshold on the heatmap too.
+
+I used multithreading (or rather, multiprocessing) in the image detection, using a thread per window, speedind up the detection a bit. Other improvements such as performing HOG only once (which I tried but seemed to worsen the results a bit) and selecting the most useful parameters can be done to make it faster.
+
+The detection still gitves false positives in some specific areas, I suspect adding more images to the dataset could solve that.
